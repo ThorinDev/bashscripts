@@ -1,2 +1,0 @@
-echo "Adding Default MOTD";
-sudo echo
