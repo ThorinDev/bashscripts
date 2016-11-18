@@ -1,2 +1,2 @@
 # bashscripts
-MOTD - `curl -L https://git.io/vXdrC | bash`
+MOTD - `curl -L --silent https://git.io/vXdrC | bash`
