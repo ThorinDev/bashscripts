@@ -11,15 +11,13 @@ read one five fifteen rest < /proc/loadavg
 echo "$(tput setaf 2)
    .~~.   .~~.    `date +"%A, %e %B %Y, %r"`
   '. \ ' ' / .'   `uname -srmo`$(tput setaf 1)
-   .~ .~~~..~.
+   .~ .~~~..~.    
   : .~.'~'.~. :   Uptime.............: ${UPTIME}
- ~ (   ) (   ) ~  Memory.............: $((`cat /proc/meminfo | grep MemFree | awk {'print $2'}`/1024))MB (Free) / $((`cat /proc/meminfo | grep MemTotal | awk {'print $2'}`/1024))MB (Total)
-( : '~'.~.'~' : ) Temperature........: `vcgencmd measure_temp | sed "s/temp=//"`
+ ~ (   ) (   ) ~  Memory.............: `cat /proc/meminfo | grep MemFree | awk {'print $2'}`kB (Free) / `cat /proc/meminfo | grep MemTotal | awk {'print $2'}`kB (Total)
+( : '~'.~.'~' : ) Load Averages......: ${one}, ${five}, ${fifteen} (1, 5, 15 min)
  ~ .~ (   ) ~. ~  Running Processes..: `ps ax | wc -l | tr -d " "`
-  (  : '~' :  )   IP Addresses.......: `/sbin/ifconfig | /bin/grep "Bcast:" | /usr/bin/cut -d ":" -f 2 | /usr/bin/cut -d " " -f 1` / `wget -q -O - http://icanhazip.com/ | tail`
+  (  : '~' :  )   IP Addresses.......: `/sbin/ifconfig eth0 | /bin/grep "inet addr" | /usr/bin/cut -d ":" -f 2 | /usr/bin/cut -d " " -f 1` and `wget -q -O - http://icanhazip.com/ | tail`
    '~ .~~~. ~'    Weather............: `curl -s "http://rss.accuweather.com/rss/liveweather_rss.asp?metric=1&locCode=DERBY" | sed -n '/Currently:/ s/.*: \(.*\): \([0-9]*\)\([CF]\).*/\2°\3, \1/p'`
-                  Free Disk Space....: `df -Pk | grep -E '^/dev/sda1' | awk '{ print $4 }' | awk -F '.' '{ print $1 }'`k on /dev/sda1
-
        '~'
 $(tput sgr0)"
 #General
